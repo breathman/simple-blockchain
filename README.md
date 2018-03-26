@@ -1,7 +1,7 @@
 # simple-blockchain
 Demo blockchain application
 
-###Run
+### Run
 ``go build``
-
+&amp;
 ``./simple-blockchain``
