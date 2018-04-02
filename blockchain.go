@@ -19,14 +19,17 @@ func (bc *Blockchain) genesis() {
 }
 
 func NewBlock(data []byte, prev []byte) *Block {
-	block := &Block{time.Now().Unix(), []byte(data), prev, []byte{}}
-	block.SetHash()
+	block := &Block{time.Now().Unix(), []byte(data), prev, []byte{}, 0}
+	pow := NewProofOfWork(block)
+	nonce, hash := pow.Run()
+	block.nonce = nonce
+	block.hash = hash
 	return block
 }
 
 func (bc *Blockchain) AddBlock(data []byte) {
 	prevBlock := bc.blocks[len(bc.blocks)-1]
-	newBlock := NewBlock(data, prevBlock.Hash)
+	newBlock := NewBlock(data, prevBlock.hash)
 	bc.blocks = append(bc.blocks, newBlock)
 }
 
