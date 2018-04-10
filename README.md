@@ -2,4 +2,8 @@
 Demo blockchain application
 
 ### Run
-``go build && ./simple-blockchain``
+``dep ensure``
+
+``go build && ./simple-blockchain addblock --data "Hello World"``
+
+``./simple-blockchain printchain``
